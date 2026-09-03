@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c5560">
+  <meta name="description" content="Digital business card for Keisha Jackson, California Manager - Tech Ops at Comcast.">
+  <title>Keisha Jackson | Digital Business Card</title>
+  <style>
+    :root {
+      --ink:#102d34;
+      --teal:#0d5963;
+      --deep:#083e46;
+      --soft:#eaf5f5;
+      --white:#ffffff;
+      --shadow:0 20px 55px rgba(16,45,52,.18);
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0; min-height:100vh; display:grid; place-items:center;
+      padding:24px 16px;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 18% 8%, rgba(13,89,99,.18), transparent 28rem),
+        linear-gradient(145deg, #f8fbfb, #e7f0f1);
+    }
+    .card {
+      width:min(100%, 430px);
+      overflow:hidden;
+      border-radius:30px;
+      background:rgba(255,255,255,.95);
+      box-shadow:var(--shadow);
+      border:1px solid rgba(13,89,99,.10);
+    }
+    .hero { position:relative; height:300px; overflow:hidden; background:var(--deep); }
+    .hero img { width:100%; height:100%; object-fit:cover; object-position:center 28%; display:block; }
+    .hero:after {
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(180deg, transparent 44%, rgba(8,62,70,.12) 65%, rgba(8,62,70,.82) 100%);
+    }
+    .brand {
+      position:absolute; z-index:2; left:22px; bottom:18px; color:#fff;
+      font-weight:800; letter-spacing:.12em; font-size:.76rem; text-transform:uppercase;
+    }
+    .content { padding:26px 24px 24px; }
+    h1 { margin:0; font-size:2rem; line-height:1.05; letter-spacing:-.035em; }
+    .role { margin:9px 0 3px; font-weight:700; color:var(--teal); font-size:1rem; }
+    .company { margin:0 0 22px; color:#587079; font-size:.95rem; }
+    .primary {
+      display:flex; align-items:center; justify-content:center; width:100%;
+      min-height:54px; border-radius:16px; text-decoration:none; font-weight:800;
+      background:linear-gradient(135deg,var(--deep),var(--teal)); color:#fff;
+      box-shadow:0 12px 22px rgba(13,89,99,.18); margin-bottom:12px;
+    }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:12px; }
+    .action {
+      text-decoration:none; color:var(--ink); background:var(--soft);
+      border:1px solid rgba(13,89,99,.08); border-radius:15px; padding:13px 8px;
+      text-align:center; font-size:.84rem; font-weight:750;
+    }
+    .linkedin {
+      display:flex; align-items:center; justify-content:center; gap:8px; width:100%;
+      min-height:50px; border-radius:15px; text-decoration:none; color:var(--deep);
+      border:1.5px solid rgba(13,89,99,.22); font-weight:800; background:#fff;
+    }
+    .share {
+      margin-top:10px; width:100%; min-height:46px; border:0; border-radius:14px;
+      font:inherit; font-weight:750; cursor:pointer; color:#5a6f75; background:transparent;
+    }
+    footer { padding:0 24px 22px; text-align:center; font-size:.72rem; color:#84959a; }
+    @media (max-width:360px) {
+      .grid { grid-template-columns:1fr; }
+      .hero { height:265px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <section class="hero">
+      <img src="keisha-jackson.png" alt="Keisha Jackson">
+      <div class="brand">Connect with Keisha</div>
+    </section>
+
+    <section class="content">
+      <h1>Keisha Jackson</h1>
+      <p class="role">California Manager - Tech Ops</p>
+      <p class="company">Comcast</p>
+
+      <a class="primary" href="keisha-jackson.vcf" download>＋ Save My Contact</a>
+
+      <div class="grid">
+        <a class="action" href="tel:+14155808797">☎ Call</a>
+        <a class="action" href="sms:+14155808797">✉ Text</a>
+        <a class="action" href="mailto:lakeisha_jackson@comcast.com">✉ Email</a>
+      </div>
+
+      <a class="linkedin" href="https://www.linkedin.com/in/kyvettejackson/" target="_blank" rel="noopener">
+        in&nbsp;&nbsp;Connect on LinkedIn
+      </a>
+
+      <button class="share" id="shareBtn" type="button">Share this card</button>
+    </section>
+
+    <footer>Tap • Save • Connect</footer>
+  </main>
+
+  <script>
+    const btn = document.getElementById('shareBtn');
+    btn.addEventListener('click', async () => {
+      const data = {
+        title: 'Keisha Jackson',
+        text: 'Keisha Jackson | California Manager - Tech Ops | Comcast',
+        url: window.location.href
+      };
+      if (navigator.share) {
+        try { await navigator.share(data); } catch(e) {}
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        btn.textContent = 'Link copied!';
+        setTimeout(() => btn.textContent = 'Share this card', 1800);
+      }
+    });
+  </script>
+</body>
+</html>
